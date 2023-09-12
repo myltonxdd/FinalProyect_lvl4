@@ -17,22 +17,23 @@ function BarLeft() {
           <hr className=" border-[#afb1b7]" />
           <div className="flex flex-col px-2 gap-2">
             <h2 className="text-sm font-semibold pl-6">MENU</h2>
-            <Link href="./showUsers" className="flex flex-row gap-1 text-sm">
+            <Link href="dashboard/showUsers" className="flex flex-row gap-1 text-sm">
                 <img src="../recursos/icons/task.svg" alt="" />
                 <p>Usuarios</p>
             </Link>
-            <Link href="./showRols" className="flex flex-row gap-1 text-sm">
+            <Link href="dashboard/showRols" className="flex flex-row gap-1 text-sm">
                 <img src="../recursos/icons/easel.svg" alt="" />
               <p>Roles</p>
             </Link>
-            <Link href="./showBitacors" className="flex flex-row gap-1 text-sm">
+            <Link href="dashboard/showBitacors" className="flex flex-row gap-1 text-sm">
                 <img src="../recursos/icons/easel.svg" alt="" />
               <p>Bitacoras</p>
             </Link>
-            <Link href="./showPersons" className="flex flex-row gap-1 text-sm">
+            <Link href="dashboard/showPersons" className="flex flex-row gap-1 text-sm">
                 <img src="../recursos/icons/easel.svg" alt="" />
               <p>Personas</p>
             </Link>
+            <h3>Bugs en produción dar Atras y elegir otra tabla :v</h3>
           </div>
         </div>
 

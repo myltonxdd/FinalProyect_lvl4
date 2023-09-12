@@ -17,14 +17,14 @@ export default function Home() {
               multiple paths for you to choose
             </p>
           </div>
-          <form className="flex flex-col w-full gap-3 pt-5 sm:pt-3" action="metodo_get.php" method="post">
+          <form className="flex flex-col w-full gap-3 pt-5 sm:pt-3" action="http://127.0.0.1:8000/api/login" method="post">
             <div className="flex flex-raw border rounded-md h-11 focus-within:border-2">
               <img src="./sobre.svg" alt="" />
-              <input type="email" id="correo" name="email" placeholder="Email" className="border-none outline-none w-full"/>
+              <input type="text" id="usuario" name="usuario" placeholder="Email" className="border-none outline-none w-full"/>
             </div>
             <div className="flex flex-raw border rounded-md h-11 focus-within:border-2">
               <img src="./candado.svg" alt="" />
-              <input type="password" id="pasword" name="pasword" placeholder="Password"
+              <input type="password" id="clave" name="clave" placeholder="Password"
                 className="border-none outline-none"/>
             </div>
             <input type="submit" defaultValue="Start coding now" className="bg-blue-600 font-semibold text-lg rounded-md text-white mt-4 sm:mt-2 h-11 cursor-pointer"/>

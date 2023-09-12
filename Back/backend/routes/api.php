@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\EnlaceController;
 use App\Http\Controllers\PaginaController;
@@ -27,19 +28,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Otras rutas de API
 
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/atuh/login',  'login');
+    Route::post('/atuh/create',  'create');
+});
+
 Route::controller(UsuarioController::class)->group(function () {
     Route::get('/usuario',  'index');
     Route::get('/usuario/{id}','show');
+    Route::post('/login','login');
     Route::post('/usuario/create',  'create');
     Route::put('/usuario/delete', 'destroy');
-    Route::post('/autorizacion',  'authusuario');
+    
 });
 
 Route::controller(PersonaController::class)->group(function () {
     Route::get('/persona',  'index');
     Route::get('/persona/{id}', 'show');
     Route::post('/persona/create', 'create');
-    Route::post('/persona/login', 'login');
     Route::get('/verificar', 'verificar');
 });
 

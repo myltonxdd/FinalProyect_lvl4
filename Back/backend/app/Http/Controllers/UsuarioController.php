@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
+    /* public function __construct()
+    {
+        $this->middleware('auth:api');
+    } */
+
     /**
      * Display a listing of the resource.
      */
@@ -36,7 +41,7 @@ class UsuarioController extends Controller
 
         $nuevoUsuario = new Usuario();
 
-        $nuevoUsuario->persona_id = $newPersona->id;
+        $nuevoUsuario->person_id = $newPersona->id;
         $nuevoUsuario->rol_id = 2;
         $nuevoUsuario->usuario = $request->usuario;
         $nuevoUsuario->clave = $request->clave;
@@ -46,7 +51,8 @@ class UsuarioController extends Controller
         $nuevoUsuario->update_by = NULL;
         $nuevoUsuario->save();
 
-        return redirect("http://localhost:3000/dashboard");
+        /* return redirect("http://localhost:3000/dashboard"); */
+        return "usuario agregado";
     }
 
     /**
@@ -80,6 +86,16 @@ class UsuarioController extends Controller
     public function edit(Usuario $usuario)
     {
         //
+    }
+
+    public function login(Request $request){
+        
+        $user = Usuario::where('usuario',$request->usuario)->where('clave',$request->clave)->get();
+        if(count($user) == 0){
+            return "Clave o Usuario erroneo";
+        }else{
+            return redirect("http://localhost:3000/dashboard");
+        }
     }
 
     /**
