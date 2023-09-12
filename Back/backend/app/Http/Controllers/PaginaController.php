@@ -12,7 +12,8 @@ class PaginaController extends Controller
      */
     public function index()
     {
-        return Pagina::all();
+        $Pagina = Pagina::where('state', 1)->get();
+        return $Pagina;
     }
 
     /**
@@ -34,9 +35,16 @@ class PaginaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pagina $pagina)
+    public function show($id)
     {
-        //
+        if (Pagina::find($id) == null) {
+            return "No existe un Pagina con el id N° " . $id;
+        }
+        if (Pagina::find($id)->state == 0) {
+            return "El Pagina N° " . $id . " esta desactivado.";
+        }
+        $Pagina = Pagina::find($id);
+        return $Pagina;
     }
 
     /**

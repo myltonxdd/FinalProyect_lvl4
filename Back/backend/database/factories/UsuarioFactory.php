@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Persona;
+use App\Models\Rol;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,13 @@ class UsuarioFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'person_id'=> Persona::inRandomOrder()->first()->id,
+            'rol_id'=>  optional(Rol::inRandomOrder()->first())->id,   
+            'usuario' => fake()->name(),
+            'fecha' => fake()->date(),  
+            'clave' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'create_by'=> 1,      
+            'update_by'=> 1,
         ];
     }
 }

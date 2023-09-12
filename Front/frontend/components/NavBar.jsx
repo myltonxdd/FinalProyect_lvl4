@@ -29,7 +29,7 @@ function NavBar() {
             <img src="../myprofile.svg" alt="" />
             <div className="font-medium text-sm">My Profile</div>
           </Link>
-          <Link href="./groupchat" className="flex flex-row gap-2">
+          <Link href="./dashboard" className="flex flex-row gap-2">
             <img src="../groupchat.svg" alt="" />
             <div className="font-medium text-sm">DashBoard</div>
           </Link>

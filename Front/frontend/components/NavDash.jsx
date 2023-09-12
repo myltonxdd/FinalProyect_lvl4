@@ -1,9 +1,23 @@
+"use client"
 import React from 'react'
+
 import Link from 'next/link'
 
 function NavDash() {
     
-    const boton = document.getElementById('miBoton');
+    /* const boton = document.getElementById('miBoton'); */
+
+   /*  // Agregar un escuchador de eventos al botón
+    boton.addEventListener('click', function() {
+        // Verificar si el elemento tiene la clase "mi-clase"
+        if (elemento.classList.contains('hidden')) {
+        // Si la tiene, la quitamos
+        elemento.classList.remove('hidden');
+        } else {
+        // Si no la tiene, la agregamos
+        elemento.classList.add('hidden');
+        }
+    }); */
 
   return (
 
@@ -22,10 +36,14 @@ function NavDash() {
                 <img src="../recursos/icons/flechIzq.svg" alt="" />
             </div>
         </div>
-        <div id="miElemento" className="flex flex-col bg-white fixed right-1 top-11 gap-3 rounded-xl drop-shadow-lg border p-3 w-36 hidden">
-            <Link href="./alumno_editPerfil.php" className="flex flex-row gap-2">
+        <div id="miElemento" className="flex flex-col bg-white fixed right-1 top-11 gap-3 rounded-xl drop-shadow-lg border p-3 w-36">
+            <Link href="./perfil" className="flex flex-row gap-2">
                 <img src="../recursos/icons/myprofile.svg" alt="" />
                 <div className="font-medium text-sm">Perfil</div>
+            </Link>
+            <Link href="./edit" className="flex flex-row gap-2">
+                <img src="../recursos/icons/myprofile.svg" alt="" />
+                <div className="font-medium text-sm">Edit Perfil</div>
             </Link>
             <hr />
             <Link href="../controler/logout.php" className="flex flex-row gap-2">

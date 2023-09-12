@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class BitacoraFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
+            'bitacora' => fake()->text($maxNbChars = 10),
+            'usuario_nombre' => fake()->name(), 
+            'user_id'=>Usuario::all()->random(),
+            'ip' => fake()->ipv4(), 
+            'so' => fake()->safeColorName(), 
+            'navegador' => fake()->userAgent()
         ];
     }
 }

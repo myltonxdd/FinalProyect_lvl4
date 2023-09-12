@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class RolFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'rol' => fake()->randomElement(['admin','student','teacher']),
+            'create_by'=> optional(Usuario::all()->random()),   
+            'update_by'=> optional(Usuario::all()->random())
         ];
     }
 }

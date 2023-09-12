@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class PersonaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->firstName(),
+            'lastname' => fake()->lastName(),
+            'create_by'=> optional(Usuario::inRandomOrder()->first())->id,   
+            'update_by'=> optional(Usuario::inRandomOrder()->first())->id
         ];
     }
 }

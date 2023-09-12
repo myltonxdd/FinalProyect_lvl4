@@ -12,8 +12,12 @@ class BitacoraController extends Controller
      */
     public function index()
     {
-        //
+          // $Bitacora = Bitacora::where('habilitado', 1)->get();
+          $Bitacora = Bitacora::all();
+          $Bitacora->load('usuario');
+          return $Bitacora;
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,9 +38,16 @@ class BitacoraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bitacora $bitacora)
+    public function show($id)
     {
-        //
+        if (Bitacora::find($id) == null) {
+            return "No existe un Bitacora con el id N° " . $id;
+        }
+        // if (Bitacora::find($id)->state == 0) {
+        //     return "El Bitacora N° " . $id . " esta desactivado.";
+        // }
+        $Bitacora = Bitacora::find($id);
+        return $Bitacora;
     }
 
     /**

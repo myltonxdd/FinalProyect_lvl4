@@ -21,7 +21,7 @@ function page() {
                 Some info may be visible to other people
               </div>
             </div>
-            <Link href="./perfil/edit">
+            <Link href="./edit">
               <div className="border rounded-lg w-24 flex justify-center items-center text-[#828282] h-9">
                 Edit
               </div>

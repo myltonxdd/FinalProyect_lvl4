@@ -13,16 +13,14 @@ return new class extends Migration
     {
         Schema::create('enlaces', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pagina');
-            $table->foreign('id_pagina')->references('id')->on('paginas');
-            $table->unsignedBigInteger('id_rol');
-            $table->foreign('id_rol')->references('id')->on('rols');
-            $table->string('descripcion');
-            $table->char('habilitado', 1)->default(1);
-            $table->date('fecha_creacion');
-            $table->date('fecha_modificacion')->nullable();
-            $table->date('usuario_creacion')->nullable();
-            $table->date('usuario_modificacion')->nullable();
+            $table->unsignedBigInteger('page_id');
+            $table->foreign('page_id')->references('id')->on('paginas');
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign('rol_id')->references('id')->on('rols');
+            $table->string('description');
+            $table->char('state', 1)->default(1);
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

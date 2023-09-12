@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
-            $table->string('primer_nombre')->nullable();
-            $table->string('segundo_nombre')->nullable();
-            $table->string('primer_apellido')->nullable();
-            $table->string('segundo_apellido')->nullable();
-            $table->char('habilitado', 1)->default(1);
-            $table->date('fecha_creacion');
-            $table->date('fecha_modificacion')->nullable();
-            $table->date('usuario_creacion')->nullable();
-            $table->date('usuario_modificacion')->nullable();
+            $table->string('name')->nullable();
+            $table->string('lastname')->nullable();
+            $table->char('state', 1)->default(1);
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

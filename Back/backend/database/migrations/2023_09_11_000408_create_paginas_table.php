@@ -14,16 +14,13 @@ return new class extends Migration
         Schema::create('paginas', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->string('estado');
-            $table->string('nombre');
-            $table->string('descripcion');
+            $table->string('name');
+            $table->string('description');
             $table->string('icono');
             $table->string('tipo');
-            $table->char('habilitado', 1)->default(1);
-            $table->date('fecha_creacion');
-            $table->date('fecha_modificacion')->nullable();
-            $table->date('usuario_creacion')->nullable();
-            $table->date('usuario_modificacion')->nullable();
+            $table->char('state', 1)->default(1);
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

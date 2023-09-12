@@ -12,7 +12,9 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        //
+        $persona = Persona::where('state', 1)->get();
+        
+        return $persona;
     }
 
     /**
@@ -34,9 +36,16 @@ class PersonaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Persona $persona)
+    public function show($id)
     {
-        //
+        if (Persona::find($id) == null) {
+            return "No existe un Persona con el id N° " . $id;
+        }
+        if (Persona::find($id)->state == 0) {
+             return "El Persona N° " . $id . " esta desactivado.";
+        }
+        $persona = Persona::find($id);
+        return $persona;
     }
 
     /**

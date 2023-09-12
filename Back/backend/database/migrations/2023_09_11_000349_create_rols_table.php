@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('rols', function (Blueprint $table) {
             $table->id();
             $table->string('rol')->unique();
-            $table->char('habilitado', 1)->default(1);
-            $table->date('fecha_creacion');
-            $table->date('fecha_modificacion')->nullable();
-            $table->date('usuario_creacion')->nullable();
-            $table->date('usuario_modificacion')->nullable();
+            $table->char('state', 1)->default(1);
+            $table->integer('create_by')->nullable();
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }
