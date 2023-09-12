@@ -17,7 +17,7 @@ export default function Home() {
               multiple paths for you to choose
             </p>
           </div>
-          <form className="flex flex-col w-full gap-3 pt-5 sm:pt-3" action="http://127.0.0.1:8000/api/login" method="post">
+          <form className="flex flex-col w-full gap-3 pt-5 sm:pt-3" action="http://127.0.0.1:8000/api/usuario/create" method="post">
             <div className="flex flex-raw border rounded-md h-11 focus-within:border-2">
               <img src="./sobre.svg" alt="" />
               <input type="text" id="usuario" name="usuario" placeholder="Email" className="border-none outline-none w-full"/>

@@ -51,8 +51,7 @@ class UsuarioController extends Controller
         $nuevoUsuario->update_by = NULL;
         $nuevoUsuario->save();
 
-        /* return redirect("http://localhost:3000/dashboard"); */
-        return "usuario agregado";
+        return redirect("http://localhost:3000/dashboard");
     }
 
     /**
@@ -92,7 +91,7 @@ class UsuarioController extends Controller
         
         $user = Usuario::where('usuario',$request->usuario)->where('clave',$request->clave)->get();
         if(count($user) == 0){
-            return "Clave o Usuario erroneo";
+            return "Clave o Usuario erroneo " . redirect("http://localhost:3000/login");
         }else{
             return redirect("http://localhost:3000/dashboard");
         }
