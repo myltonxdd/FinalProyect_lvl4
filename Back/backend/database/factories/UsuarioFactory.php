@@ -19,9 +19,9 @@ class UsuarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'person_id'=> Persona::inRandomOrder()->first()->id,
+            'person_id'=> Persona::all()->random(),
             'rol_id'=>  optional(Rol::inRandomOrder()->first())->id,   
-            'usuario' => fake()->name(),
+            'usuario' => fake()->userName(),
             'fecha' => fake()->date(),  
             'password' => '12345', // password
             'create_by'=> 1,      

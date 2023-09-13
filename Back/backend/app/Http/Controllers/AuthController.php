@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Bitacora;
 use App\Models\Persona;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -28,16 +29,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = request(['usuario', 'password']);
-    
+
         if (! $token = auth()->attempt(['usuario' => $credentials['usuario'], 'password' => $credentials['password']])) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-    
-        return $this->respondWithToken($token);
+
+        // Devuelve el token en la respuesta JSON
+        return response()->json(['token' => $token]);
     }
-    
-
-
 
     public function create(Request $request)
     {
@@ -54,17 +53,33 @@ class AuthController extends Controller
 
         $nuevoUsuario->person_id = $newPersona->id;
         $nuevoUsuario->rol_id = 2;
-
         $nuevoUsuario->usuario = $request->usuario;
         $nuevoUsuario->password = $request->password;
         $nuevoUsuario->state = 1;
         $nuevoUsuario->fecha = now();
-        $nuevoUsuario->create_by = NULL;
-        $nuevoUsuario->update_by = NULL;
+        $nuevoUsuario->create_by = $newPersona->id;
+        $nuevoUsuario->update_by = $newPersona->id;
         $nuevoUsuario->save();
 
-        return "Usarui creado";
+        $id = $nuevoUsuario->id;
+
+        $creador = Usuario::find($id);
+
+        $newBitacora = new Bitacora();
+
+        $newBitacora->bitacora = "Create Usuario: " .$id;
+        $newBitacora->user_id = $id;
+        $newBitacora->updated_at = now();
+        $newBitacora->so = "PHP_OS";
+        $newBitacora->ip = "192.168.100.1";
+        $newBitacora->navegador = "Buscador de Google";
+        $newBitacora->usuario_nombre = $creador->usuario;
+        $newBitacora->state = 1;
+        $newBitacora->save();
+
+        return "usuario creado";
         return redirect("http://localhost:3000/dashboard");
+        
     }
 
 

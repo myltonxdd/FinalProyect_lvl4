@@ -1,8 +1,48 @@
+"use client"
 import React from "react";
 import NavBar from "@/components/navBar";
 import Link from "next/link";
+import {useState, useEffect } from "react";
 
 function page() {
+
+  const [datos, setDatos] = useState(null);
+    
+  ////// JSON ////////
+
+  async function getData() {
+  
+  try {
+      
+          /* let num = $id.params.id */
+          let num = 1;
+          const parameter = await fetch(`http://127.0.0.1:8000/api/usuario/${num}`);
+          const data = await parameter.json();
+
+          return data;
+
+          
+      } catch (error) {
+          console.log(error);
+      }
+  }
+
+  useEffect(() => {
+      const fetchData = async () => {
+        const data = await getData(1);
+        setDatos(data);
+      };
+  
+      fetchData();
+    }, [1]);
+
+    console.log(datos);
+
+    if (datos === null) {
+      // Puedes mostrar un mensaje de carga mientras se obtienen los datos
+      return <div>Cargando...</div>;
+    }
+
   return (
     <div className="bg-white h-screen flex flex-col px-6 pt-6 gap-3">
       <NavBar /> 
@@ -39,23 +79,37 @@ function page() {
             <hr />
             <div className="flex flex-raw justify-between w-full">
               <div className="flex  items-center text-sm text-[#BDBDBD] font-medium w-1/3">
+                ID
+              </div>
+              <div> {datos.id}</div>
+            </div>
+            <hr />
+            <div className="flex flex-raw justify-between w-full">
+              <div className="flex  items-center text-sm text-[#BDBDBD] font-medium w-1/3">
                 NAME
               </div>
-              <div> Nombre</div>
+              <div> {datos.persona.name}</div>
             </div>
             <hr />
             <div className="flex flex-raw justify-between w-full">
               <div className="flex  items-center text-sm text-[#BDBDBD] font-medium w-1/3">
-                BIO
+                USUARIO
               </div>
-              <div> bio</div>
+              <div> {datos.usuario}</div>
             </div>
             <hr />
             <div className="flex flex-raw justify-between w-full">
               <div className="flex  items-center text-sm text-[#BDBDBD] font-medium w-1/3">
-                EMAIL
+                ROL
               </div>
-              <div> email</div>
+              <div> {datos.rol.rol}</div>
+            </div>
+            <hr />
+            <div className="flex flex-raw justify-between w-full">
+              <div className="flex  items-center text-sm text-[#BDBDBD] font-medium w-1/3">
+                FECHA
+              </div>
+              <div> {datos.fecha}</div>
             </div>
             <hr />
             <div className="flex flex-raw justify-between w-full">

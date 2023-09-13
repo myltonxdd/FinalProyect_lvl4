@@ -1,6 +1,55 @@
+"use client"
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+
+  const [formData, setFormData] = useState({
+    usuario: "",
+    password: "",
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((formData) => ({
+      ...formData,
+      [name]: value,
+    }));
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch("http://127.0.0.1:8000/api/usuario/create", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      
+    if (data.token) {
+        // Guarda el token en el almacenamiento local del navegador
+        localStorage.setItem("jwt_token", data.token);
+        window.location.href = '/dashboard';
+    
+    } else {
+        console.log("NO valio guardar el Token")
+        
+        // Maneja el caso de autenticación fallida
+    }
+    })
+    .catch((error) => {
+    console.error("Error de red:", error);
+    });
+    window.location.href = '/dashboard';
+  };
+
+  
   return (
     <main className="h-full w-full bg-white">
       <div className="flex flex-col w-screen h-screen pt-6 px-6 gap-5 items-center">
@@ -17,14 +66,20 @@ export default function Home() {
               multiple paths for you to choose
             </p>
           </div>
-          <form className="flex flex-col w-full gap-3 pt-5 sm:pt-3" action="http://127.0.0.1:8000/api/usuario/create" method="post">
+          <form className="flex flex-col w-full gap-3 pt-5 sm:pt-3" method="post" onSubmit={handleSubmit}>
             <div className="flex flex-raw border rounded-md h-11 focus-within:border-2">
               <img src="./sobre.svg" alt="" />
-              <input type="text" id="usuario" name="usuario" placeholder="Email" className="border-none outline-none w-full"/>
+              <input type="text" id="usuario" name="usuario"
+                placeholder="usuario"
+                value={formData.usuario}
+                onChange={handleInputChange} className="border-none outline-none w-full"/>
             </div>
             <div className="flex flex-raw border rounded-md h-11 focus-within:border-2">
               <img src="./candado.svg" alt="" />
-              <input type="password" id="clave" name="clave" placeholder="Password"
+              <input type="password" id="clave" name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
                 className="border-none outline-none"/>
             </div>
             <input type="submit" defaultValue="Start coding now" className="bg-blue-600 font-semibold text-lg rounded-md text-white mt-4 sm:mt-2 h-11 cursor-pointer"/>

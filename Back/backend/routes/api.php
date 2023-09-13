@@ -29,8 +29,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Otras rutas de API
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('/atuh/login',  'login');
     Route::post('/atuh/create',  'create');
+    Route::post('/atuh/login',  'login');
+    Route::post('/atuh/validation', 'me');
 });
 
 Route::controller(UsuarioController::class)->group(function () {
@@ -38,6 +39,7 @@ Route::controller(UsuarioController::class)->group(function () {
     Route::get('/usuario/{id}','show');
     Route::post('/login','login');
     Route::post('/usuario/create',  'create');
+    Route::put('/usuario/update/{id}',  'update');
     Route::put('/usuario/delete', 'destroy');
     
 });
