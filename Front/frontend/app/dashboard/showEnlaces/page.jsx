@@ -11,7 +11,7 @@ function page() {
     async function getData() {
 
     try {
-            const parameter = await fetch(`http://127.0.0.1:8000/api/usuario`);
+            const parameter = await fetch(`http://127.0.0.1:8000/api/enlace`);
             const data = await parameter.json();
             return data;
 
@@ -37,8 +37,6 @@ function page() {
         return <div>Cargando...</div>;
       }
 
-
-    let $i = 1;
     return (
         <div className="flex flex-col w-full items-center">
             <NavDash />
@@ -65,24 +63,25 @@ function page() {
                                                 </button>
                                             </th>
 
-                                            <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                 Nombre
                                             </th>
 
-                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                Usuario
+                                            <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                Description
                                             </th>
 
                                             <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                Rol
+                                                Url
+                                            </th>
+
+
+                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                Tipo
                                             </th>
 
                                             <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                Fecha
-                                            </th>
-
-                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                Created at
+                                                Create at
                                             </th>
 
                                         </tr>
@@ -90,44 +89,44 @@ function page() {
                                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                         {datos.map((item)=>(
                                              <tr key={item.id}>
-                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <td className="px-12 py-4 text-sm font-medium whitespace-nowrap">
                                                  <div>
                                                      <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
                                                          {item.id}
                                                      </p>
                                                  </div>
                                              </td>
-                                             <td className="px-12 py-4 text-sm font-medium whitespace-nowrap">
+                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                  <div>
                                                      <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                                         {item.persona.name}
+                                                         {item.pagina.name}
+                                                     </p>
+                                                 </div>
+                                             </td>
+                                             <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                 <div>
+                                                     <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                                        {item.description}
                                                      </p>
                                                  </div>
                                              </td>
                                              <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                  <div>
                                                     <p className="text-gray-500 dark:text-gray-400">
-                                                        {item.usuario}
+                                                        {item.pagina.url}
                                                     </p>
                                                  </div>
                                              </td>
                                              <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                  <div>
                                                     <p className="text-gray-500 dark:text-gray-400">
-                                                        {item.rol.rol}
+                                                        {item.pagina.tipo}
                                                     </p>
                                                  </div>
                                              </td>
-                                             <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                             <td className="px-4 py-4 text-sm whitespace-nowrap ">
                                                  <div>
-                                                    <p className="text-gray-500 dark:text-gray-400">
-                                                        {item.fecha}
-                                                    </p>
-                                                 </div>
-                                             </td>
-                                             <td className="px-4 py-4 text-sm whitespace-nowrap">
-                                                 <div>
-                                                    <p className="text-gray-500 dark:text-gray-400">
+                                                    <p className="text-gray-500 dark:text-gray-400 max-w-[13rem]">
                                                         {item.created_at}
                                                     </p>
                                                  </div>

@@ -3,16 +3,19 @@ import NavDash from "@/components/NavDash";
 import React from "react";
 import {useState, useEffect } from "react";
 
-function page() {
+function page ($id) {
     const [datos, setDatos] = useState(null);
-
+    
     ////// JSON ////////
 
-    async function getData() {
-
+    async function getData($id) {
+    
     try {
-            const parameter = await fetch(`http://127.0.0.1:8000/api/usuario`);
+        
+            let num = $id.params.id
+            const parameter = await fetch(`http://127.0.0.1:8000/api/usuario/${num}`);
             const data = await parameter.json();
+
             return data;
 
             
@@ -23,12 +26,12 @@ function page() {
 
     useEffect(() => {
         const fetchData = async () => {
-          const data = await getData();
+          const data = await getData($id);
           setDatos(data);
         };
     
         fetchData();
-      }, []);
+      }, [$id]);
 
       console.log(datos);
 
@@ -38,7 +41,6 @@ function page() {
       }
 
 
-    let $i = 1;
     return (
         <div className="flex flex-col w-full items-center">
             <NavDash />
@@ -88,53 +90,50 @@ function page() {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                        {datos.map((item)=>(
-                                             <tr key={item.id}>
+                                        <tr>
                                              <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                  <div>
                                                      <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                                         {item.id}
+                                                         {datos.id}
                                                      </p>
                                                  </div>
                                              </td>
                                              <td className="px-12 py-4 text-sm font-medium whitespace-nowrap">
                                                  <div>
                                                      <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                                         {item.persona.name}
+                                                         {datos.persona.name}
                                                      </p>
                                                  </div>
                                              </td>
                                              <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                  <div>
                                                     <p className="text-gray-500 dark:text-gray-400">
-                                                        {item.usuario}
+                                                        {datos.usuario}
                                                     </p>
                                                  </div>
                                              </td>
                                              <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                  <div>
                                                     <p className="text-gray-500 dark:text-gray-400">
-                                                        {item.rol.rol}
+                                                        {datos.rol.rol}
                                                     </p>
                                                  </div>
                                              </td>
                                              <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                  <div>
                                                     <p className="text-gray-500 dark:text-gray-400">
-                                                        {item.fecha}
+                                                        {datos.fecha}
                                                     </p>
                                                  </div>
                                              </td>
                                              <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                  <div>
                                                     <p className="text-gray-500 dark:text-gray-400">
-                                                        {item.created_at}
+                                                        {datos.created_at}
                                                     </p>
                                                  </div>
                                              </td>
                                          </tr>
-                                        )
-                                        )}
                                        
                                     </tbody>
                                 </table>
@@ -149,4 +148,4 @@ function page() {
     );
 }
 
-export default page;
+export default page

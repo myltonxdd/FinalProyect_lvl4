@@ -1,5 +1,6 @@
 import React from "react";
 import NavDash from "@/components/NavDash";
+import Link from "next/link";
 
 
 function page() {
@@ -7,6 +8,22 @@ function page() {
 
     <div className="flex flex-col w-screen h-full bg-[#f5f6fa]">
         <NavDash/>
+        <div id="miElemento" className="flex flex-col bg-white fixed right-1 top-11 gap-3 rounded-xl drop-shadow-lg border p-3 w-36">
+            <Link href="./perfil" className="flex flex-row gap-2">
+                <img src="../recursos/icons/myprofile.svg" alt="" />
+                <div className="font-medium text-sm">Perfil</div>
+            </Link>
+            <Link href="./edit" className="flex flex-row gap-2">
+                <img src="../recursos/icons/myprofile.svg" alt="" />
+                <div className="font-medium text-sm">Edit Perfil</div>
+            </Link>
+            <hr />
+            <Link href="../controler/logout.php" className="flex flex-row gap-2">
+                <img src="./logout.svg" alt="" />
+                <div className="text-red-600 font-medium text-sm">Logout</div>
+            </Link>
+
+        </div>
         <div className="flex flex-row items-center justify-between w-full px-5 py-3">
             <h2 className="text-2xl">Dashboard</h2>
             <div className="flex flex-row items-center text-sm">

@@ -36,22 +36,7 @@ function NavDash() {
                 <img src="../recursos/icons/flechIzq.svg" alt="" />
             </div>
         </div>
-        <div id="miElemento" className="flex flex-col bg-white fixed right-1 top-11 gap-3 rounded-xl drop-shadow-lg border p-3 w-36">
-            <Link href="./perfil" className="flex flex-row gap-2">
-                <img src="../recursos/icons/myprofile.svg" alt="" />
-                <div className="font-medium text-sm">Perfil</div>
-            </Link>
-            <Link href="./edit" className="flex flex-row gap-2">
-                <img src="../recursos/icons/myprofile.svg" alt="" />
-                <div className="font-medium text-sm">Edit Perfil</div>
-            </Link>
-            <hr />
-            <Link href="../controler/logout.php" className="flex flex-row gap-2">
-                <img src="./logout.svg" alt="" />
-                <div className="text-red-600 font-medium text-sm">Logout</div>
-            </Link>
-
-        </div>
+        
     </div>
 
   )

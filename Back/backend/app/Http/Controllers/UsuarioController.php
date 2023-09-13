@@ -44,7 +44,7 @@ class UsuarioController extends Controller
         $nuevoUsuario->person_id = $newPersona->id;
         $nuevoUsuario->rol_id = 2;
         $nuevoUsuario->usuario = $request->usuario;
-        $nuevoUsuario->clave = $request->clave;
+        $nuevoUsuario->password = $request->password;
         $nuevoUsuario->state = 1;
         $nuevoUsuario->fecha = now();
         $nuevoUsuario->create_by = NULL;
@@ -89,9 +89,9 @@ class UsuarioController extends Controller
 
     public function login(Request $request){
         
-        $user = Usuario::where('usuario',$request->usuario)->where('clave',$request->clave)->get();
+        $user = Usuario::where('usuario',$request->usuario)->where('password',$request->password)->get();
         if(count($user) == 0){
-            return "Clave o Usuario erroneo " . redirect("http://localhost:3000/login");
+            return "password o Usuario erroneo " . redirect("http://localhost:3000/login");
         }else{
             return redirect("http://localhost:3000/dashboard");
         }

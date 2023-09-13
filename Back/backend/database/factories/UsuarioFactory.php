@@ -23,7 +23,7 @@ class UsuarioFactory extends Factory
             'rol_id'=>  optional(Rol::inRandomOrder()->first())->id,   
             'usuario' => fake()->name(),
             'fecha' => fake()->date(),  
-            'clave' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '12345', // password
             'create_by'=> 1,      
             'update_by'=> 1,
         ];

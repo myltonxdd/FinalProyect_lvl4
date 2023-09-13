@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Persona;
 use App\Models\Usuario;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','create']]);
+        $this->middleware('auth:api', ['except' => ['login']]);
     }
 
     /**
@@ -27,14 +27,15 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $request(['usuario', 'clave']);
-
-        if (! $token = auth()->attempt($credentials)) {
+        $credentials = request(['usuario', 'password']);
+    
+        if (! $token = auth()->attempt(['usuario' => $credentials['usuario'], 'password' => $credentials['password']])) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
+    
         return $this->respondWithToken($token);
     }
+    
 
 
 
@@ -51,13 +52,11 @@ class AuthController extends Controller
 
         $nuevoUsuario = new Usuario();
 
-        $user = $request->input('usuario');
-        $claves = $request->input('clave');
-
         $nuevoUsuario->person_id = $newPersona->id;
         $nuevoUsuario->rol_id = 2;
-        $nuevoUsuario->usuario = $user;
-        $nuevoUsuario->clave = $claves;
+
+        $nuevoUsuario->usuario = $request->usuario;
+        $nuevoUsuario->password = $request->password;
         $nuevoUsuario->state = 1;
         $nuevoUsuario->fecha = now();
         $nuevoUsuario->create_by = NULL;

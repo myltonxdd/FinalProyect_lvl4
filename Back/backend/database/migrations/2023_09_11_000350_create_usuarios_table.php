@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('person_id');
             $table->foreign('person_id')->references('id')->on('personas');
             $table->string('usuario')->unique();
-            $table->string('clave');
+            $table->string('password');
             $table->date('fecha')->nullable();
             $table->unsignedBigInteger('rol_id');
             $table->foreign('rol_id')->references('id')->on('rols');
